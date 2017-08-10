@@ -10,7 +10,7 @@
 
 <div class="page-header">
   <h3>Add Photo</h3>
-</div>
+  </div>
 
 <div class="row">
   <div class="col-md-12">
@@ -36,14 +36,10 @@
         <input type="text" id="image" name="image" placeholder="Image" class="form-control" value="<%= @photo.image %>">
       </div>
 
-      <!-- Label and input for user_id -->
-      <div class="form-group">
-        <label for="user_id" class="control-label">
-          User
-        </label>
-
-        <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @photo.user_id %>">
-      </div>
+    
+      <!-- Label and input for user_id: we removed this because we made the param in photos_controller automatically pull from current user id -->
+      <!--<input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= current.user_id %>">-->
+      <!--</div>-->
 
       <button class="btn btn-success">
         Create Photo
