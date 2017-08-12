@@ -4,9 +4,12 @@ Rails.application.routes.draw do
   
   devise_for :users
   
+  get "/", :controller => "photos", :action => "index"
+  
   get "/my_likes", :controller => "photos", :action => "favorites"
   
-  # USER DETAILS
+  # Routes for User resource
+  # DETAILS
   get "/users", :controller => "users", :action => "index"
   get "/users/:id", :controller => "users", :action => "index"
   
@@ -50,6 +53,7 @@ Rails.application.routes.draw do
   post "/create_photo", :controller => "photos", :action => "create"
 
   # READ
+  
   get "/photos", :controller => "photos", :action => "index"
   get "/photos/:id", :controller => "photos", :action => "show"
 

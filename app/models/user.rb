@@ -10,7 +10,7 @@ class User < ApplicationRecord
   
   has_many :liked_photos, :through => :likes, :source => :photo
 
-  validates :username, :presence => true, :uniqueness => true
+  validates :username, :presence => true, :uniqueness => { :case_sensitive => false }
 
   # can use this shortcut because named nicely
 
