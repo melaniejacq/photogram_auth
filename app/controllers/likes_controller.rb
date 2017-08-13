@@ -32,6 +32,14 @@ class LikesController < ApplicationController
     end
   end
 
+  def quick_create
+    @like = Like.new
+    
+    @like.user_id = params[:user_id]
+    @like.photo_id = params[:photo_id]
+    
+    save_status = @like.save
+
   def edit
     @like = Like.find(params[:id])
 
@@ -64,4 +72,5 @@ class LikesController < ApplicationController
       redirect_to(:back, :notice => "Like deleted.")
     end
   end
+end
 end
