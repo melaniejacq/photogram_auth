@@ -39,6 +39,9 @@ class LikesController < ApplicationController
     @like.photo_id = params[:photo_id]
     
     save_status = @like.save
+    redirect_to("/photos")
+
+  end
 
   def edit
     @like = Like.find(params[:id])
@@ -72,5 +75,4 @@ class LikesController < ApplicationController
       redirect_to(:back, :notice => "Like deleted.")
     end
   end
-end
 end

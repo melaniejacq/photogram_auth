@@ -39,6 +39,18 @@ class CommentsController < ApplicationController
     render("comments/edit.html.erb")
   end
 
+  def quick_comment
+    @comment = Comment.new
+
+    @comment.photo_id = params[:photo_id]
+    @comment.body = params[:body]
+    @comment.user_id = params[:user_id]
+
+    save_status = @comment.save
+    redirect_to("/photos")
+
+  end
+  
   def update
     @comment = Comment.find(params[:id])
 

@@ -1,9 +1,6 @@
 <div class="page-header">
-  <h1>
-    Photos
-    <a href="/photos/new" class="btn btn-lg btn-success">New Photo</a>
-  </h1>
-</div>
+     <a href="/photos/new" class="btn btn-lg btn-success"><i class="fa fa-plus"></i> New photo </a>
+ </div>
 
 <% @photos.each do |photo| %>
  <div class="col-md-8 col-md-offset-2">
@@ -24,14 +21,14 @@
 
         <p>
           <% if photo.likes.find_by(:user_id => current_user.id) == nil %>
-            <form action="/quick_like" method="post">
+            <form action="/quick_create" method="post">
               <!-- Hidden input for authenticity token to protect from forgery -->
               <input name="authenticity_token" type="hidden" value="klmxRMdnv59CQDOs7KdMnrlg2gV6xRqrmId5hDrcxtorcMibVtTaIHMRXNi0/8i663fBdW3oSJkILfkRQSmzbA==">
               <input type="hidden" name="photo_id" value="<%=photo.id%>">
               <input type="hidden" name="user_id" value="<%=current_user.id%>">
 
               <button class="btn btn-link">
-                <i class="fa fa-heart-o"></i>
+                <i class="fa-heart-o"></i>
               </button>
             </form>
           <%else%>
@@ -48,23 +45,21 @@
                 <small>
                   <%= (Time.now - comment.updated_at).to_i/(24*60*60) %> day(s) ago
                 </small>
-              </h6>
-              <%=comment.body%>
+               </h6>
+               <%=comment.body%>
             </div>
           </li>
           <%end%>
-          
+        </ul>   
           
           <li class="media">
             <div class="media-body">
-              <form action="/quick_comment" method="post">
+                <form action="/quick_comment" method="post">
                 <!-- Hidden input for authenticity token to protect from forgery -->
                 <input name="authenticity_token" type="hidden" value="3QOonJxnRaryXSnv1cJYhNO4cPuvrNou5aS6EJjVE/5kKtFDDdQgFcMMRpuNmtygga9ri7iBiBx1DjqF4yBmSA==">
-
-                <input type="hidden" name="photo_id" value="<%photo.id%>">
-
-                <input type="hidden" name="user_id" value="<%=current_user.id%>">
-
+                <input type="hidden" name="photo_id" value="<%= photo.id %>">
+                <input type="hidden" name="user_id" value="<%= current_user.id %>">
+                
                 <!-- Label and input for body -->
                 <div class="form-group">
                   <label for="body" class="sr-only">
@@ -84,12 +79,16 @@
               </form>
             </div>
           </li>
-        </ul>      
-      
+   
       <div class="btn-group btn-group-justified">
         <a href="/photos/<%= photo.id %>"     class="btn btn-primary"><i class="fa fa-chevron-left"></i></a>
+        
+        <% if photo.user_id == current_user.id %>
+        
         <a href="/photos/<%=photo.id%>/edit"  class="btn btn-warning"><i class="fa fa-edit"></i></a>
         <a href="/delete_photo/<%=photo.id%>" class="btn btn-danger" rel="nofollow"><i class="fa fa-trash-o"></i></a>
+      
+        <% end %>      
       </div>
       </div>
     </div>
