@@ -1,0 +1,33 @@
+<div class="page-header">
+  <h1>
+    Liked Photos
+    <a href="/likes/new" class="btn btn-lg btn-success">New Liked Photo</a>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>Caption</th>
+        <th>Image</th>
+        <th>User</th>
+        <th>Actions</th>
+      </tr>
+
+      <% current_user.liked_photos.each do |photo| %>
+      <% @like = Like.find_by({ :user_id => current_user, :photo_id => photo.id }) %>
+      <tr>
+        <td><%= photo.caption %></td>
+        <td><img src="<%= photo.image %>" width="300"</td>
+        <td><%= photo.user.username %></td>
+        <td>
+          <a href="/photos/<%= photo.id %>" class="btn btn-primary">Show</a>
+          <a href="/photos/<%= photo.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_photo/<%= photo.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

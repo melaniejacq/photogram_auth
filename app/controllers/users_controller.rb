@@ -8,5 +8,6 @@ class UsersController < ApplicationController
     
     # @photos = Photo.where(:user_id => @user.id)
     @photos = @user.photos
+    render("users/show.html.erb")
   end
 end

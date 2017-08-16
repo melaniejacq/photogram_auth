@@ -41,8 +41,12 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <li><a href="/comments">Comments</a></li>
-          <li><a href="/likes">Likes</a></li>
+          <li><a href="/my_likes">Likes</a></li>
           <li><a href="/photos">Photos</a></li>
+          <li><a href= "/users">Users</a></li>
+          <% unless current_user.blank? %>
+          <li><a href="/users/<%=current_user.id%>">Home</a></li>
+          <% end %>
           <li><a href="/rails/info">Sitemap</a></li>
         </ul>
 
@@ -56,19 +60,21 @@
           
             <li>
               <a href="/users/sign_up">
-                Sign Up
+                Sign Up!
               </a>
             </li>
           <% else %>
             <li>
-              <a href="users/edit">
-                Edit Profile
+              <a href="/users/edit">
+                <!--Replace this text with user name-->
+                <%= current_user.username %>
               </a>
             </li>
           
           <li><a href="/users/edit">Edit Profile </a></li>
-          <li><a href="/users/sign_out" data-method="delete" rel="nofollow"> 
-          Sign Out 
+          <li><a href="/users/sign_out" data-method="delete" rel="nofollow">  
+          <i class="fa fa-sign-out"></i> 
+          Sign-Out 
           </a>
           </li>
           <% end %>

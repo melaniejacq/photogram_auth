@@ -4,16 +4,20 @@ Rails.application.routes.draw do
   
   devise_for :users
   
+  get "/", :controller => "photos", :action => "index"
+  
   get "/my_likes", :controller => "photos", :action => "favorites"
   
-  # USER DETAILS
+  # Routes for User resource
+  # DETAILS
   get "/users", :controller => "users", :action => "index"
-  get "/users/:id", :controller => "users", :action => "index"
+  get "/users/:id", :controller => "users", :action => "show"
   
   # Routes for the Comment resource:
   # CREATE
   get "/comments/new", :controller => "comments", :action => "new"
   post "/create_comment", :controller => "comments", :action => "create"
+  post "/quick_comment", :controller => "comments", :action => "quick_comment"
 
   # READ
   get "/comments", :controller => "comments", :action => "index"
@@ -31,6 +35,7 @@ Rails.application.routes.draw do
   # CREATE
   get "/likes/new", :controller => "likes", :action => "new"
   post "/create_like", :controller => "likes", :action => "create"
+  post "/quick_create", :controller => "likes", :action => "quick_create"
 
   # READ
   get "/likes", :controller => "likes", :action => "index"
@@ -50,6 +55,7 @@ Rails.application.routes.draw do
   post "/create_photo", :controller => "photos", :action => "create"
 
   # READ
+  
   get "/photos", :controller => "photos", :action => "index"
   get "/photos/:id", :controller => "photos", :action => "show"
 
